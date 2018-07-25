@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.omdapi.example"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+
+        debug{
+            applicationIdSuffix '.debug'
+            resValue "string", "api_url", "http://www.omdbapi.com/"
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "api_url", "http://www.omdbapi.com/"
+        }
+    }
+}
+
+dependencies {
+
+    /* support libraries */
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    implementation group: 'com.android.support', name: 'support-v4', version: '28.0.0-alpha3'
+    implementation group: 'com.android.support', name: 'design', version: '28.0.0-alpha3'
+    implementation group: 'com.android.support', name: 'appcompat-v7', version: '28.0.0-alpha3'
+    implementation group: 'com.android.support', name: 'recyclerview-v7', version: '28.0.0-alpha3'
+    implementation group: 'com.android.support', name: 'cardview-v7', version: '28.0.0-alpha3'
+
+    /*retrofit*/
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    'com.squareup.retrofit2:retrofit:2.0.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+
+    /*inceptor*/
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    /*rx*/
+    implementation 'io.reactivex:rxjava:1.2.10'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    /*moxy*/
+    implementation 'com.arello-mobile:moxy:1.5.3'
+    implementation 'com.arello-mobile:moxy-app-compat:1.5.3'
+    annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
+    /*dagger*/
+    implementation "com.google.dagger:dagger:2.11"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    annotationProcessor "com.google.dagger:dagger-compiler:2.11"
+
+    /*butterknife*/
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+}
