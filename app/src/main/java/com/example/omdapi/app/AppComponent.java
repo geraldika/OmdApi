@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.omdapi.api.ApiModule;
 import com.example.omdapi.api.ServiceModule;
-import com.example.omdapi.main.presenter.OmdSearchPresenter;
+import com.example.omdapi.main.presenter.SearchFilmsPresenter;
 
 import javax.inject.Singleton;
 
@@ -18,6 +18,6 @@ public interface AppComponent {
 
     void inject(App app);
 
-    void inject(OmdSearchPresenter omdSearchPresenter);
+    void inject(SearchFilmsPresenter omdSearchPresenter);
 
 }

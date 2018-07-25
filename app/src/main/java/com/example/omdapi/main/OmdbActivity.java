@@ -1,29 +1,57 @@
 package com.example.omdapi.main;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.omdapi.R;
-import com.example.omdapi.base.BaseActivity;
-import com.example.omdapi.main.model.Film;
-import com.example.omdapi.main.presenter.OmdSearchPresenter;
+import com.example.omdapi.main.fragments.FilmInfoFragment;
+import com.example.omdapi.main.fragments.SearchFilmsFragment;
 
-import java.util.List;
+public class OmdbActivity extends AppCompatActivity {
 
-public class OmdbActivity extends BaseActivity implements OmdbSearchView {
+    private static final String SEARCH_FRAGMENT = "search_fragment";
+    private static final String INFO_FRAGMENT = "info_fragment";
 
-    @InjectPresenter
-    OmdSearchPresenter omdSearchPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_omdb);
 
+        initSearchFragment();
     }
 
-    @Override
-    public void showFilms(List<Film> films) {
 
+    private void initSearchFragment() {
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(SEARCH_FRAGMENT);
+        if (fragment == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container_layout, SearchFilmsFragment.newInstance(), INFO_FRAGMENT)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .attach(fragment)
+                    .commit();
+        }
+    }
+
+    private void initInfoFragment() {
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(INFO_FRAGMENT);
+        if (fragment == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container_layout, FilmInfoFragment.newInstance(), SEARCH_FRAGMENT)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .attach(fragment)
+                    .commit();
+        }
     }
 }
