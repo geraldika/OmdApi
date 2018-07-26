@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import com.example.omdapi.main.model.Film;
 
 import java.util.Collections;
 import java.util.List;
+
+import static com.example.omdapi.utils.Constants.EMPTY;
 
 public class FilmsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -65,7 +66,7 @@ public class FilmsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             FilmHolder taskHolder = (FilmHolder) holder;
             Film film = films.get(position);
-            String title = film.getTitle() != null && !"".equals(film.getTitle()) ? film.getTitle() : context.getString(R.string.title_not_found);
+            String title = film.getTitle() != null && !EMPTY.equals(film.getTitle()) ? film.getTitle() : context.getString(R.string.title_not_found);
             taskHolder.titleTv.setText(title);
 
             taskHolder.filmCv.setOnClickListener((View view) -> {

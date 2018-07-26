@@ -5,21 +5,23 @@ import android.support.annotation.NonNull;
 import com.example.omdapi.api.wrapper.SearchWrapper;
 import com.example.omdapi.main.model.Film;
 
-import java.util.List;
-
 import io.reactivex.Observable;
-
-import static com.example.omdapi.utils.Constants.OMD_API_KEY;
+import retrofit2.Call;
 
 public class WebService {
 
-    private OmdbApi omdApi;
+    public static final String OMD_API_KEY = "484cf683";
+    private OmdbApi omdbApi;
 
     public WebService(OmdbApi omdApi) {
-        this.omdApi = omdApi;
+        this.omdbApi = omdApi;
     }
 
     public Observable<SearchWrapper> getFilms(@NonNull String searchString) {
-        return omdApi.getFilms(OMD_API_KEY, searchString);
+        return omdbApi.getFilms(OMD_API_KEY, searchString);
+    }
+
+    public Call<Film> getFilmInfo(@NonNull String idFilm) {
+        return omdbApi.getFilmInfo(OMD_API_KEY, idFilm);
     }
 }

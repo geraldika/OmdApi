@@ -18,7 +18,7 @@ public class Film {
 
     @SerializedName("Ratings")
     @Expose
-    private List<String> ratings;
+    private List<Rating> ratings;
 
     @SerializedName("Country")
     @Expose
@@ -56,11 +56,11 @@ public class Film {
         this.title = title;
     }
 
-    public List<String> getRatings() {
+    public List<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(List<String> ratings) {
+    public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
 
@@ -122,6 +122,7 @@ public class Film {
     public int hashCode() {
         return Objects.hash(title, ratings, country, director, actors, plot, poster);
     }
+
 
     /* Постер фильма
  Название!

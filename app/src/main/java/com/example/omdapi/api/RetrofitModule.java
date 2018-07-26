@@ -1,5 +1,7 @@
 package com.example.omdapi.api;
 
+import com.example.omdapi.R;
+import com.example.omdapi.app.App;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;
@@ -9,7 +11,6 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -31,7 +32,7 @@ public class RetrofitModule {
         return new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://www.omdbapi.com/")
+                .baseUrl(App.getAppComponent().getContext().getString(R.string.api_url))
                 .client(initClient())
                 .build();
     }

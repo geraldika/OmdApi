@@ -8,12 +8,13 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.omdapi.api.WebService;
 import com.example.omdapi.app.App;
-import com.example.omdapi.main.SearchView;
+import com.example.omdapi.main.view.SearchFilmsView;
 import com.example.omdapi.main.model.Film;
 import com.example.omdapi.main.model.OmdSearchInteractor;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +27,7 @@ import io.reactivex.schedulers.Schedulers;
 
 
 @InjectViewState
-public class SearchFilmsPresenter extends MvpPresenter<SearchView> {
+public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
 
     private static final String TAG = SearchFilmsPresenter.class.getSimpleName();
 
@@ -62,6 +63,7 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchView> {
 
                 if (!TextUtils.isEmpty(onTextChangeEvent.text().toString()))
                     getSearchedTask(onTextChangeEvent.text().toString());
+                else getViewState().showFilms(Collections.emptyList());
             }
         };
 

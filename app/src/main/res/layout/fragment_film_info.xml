@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_back"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorPrimaryTextColor"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="@dimen/margin_16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/poster_iv"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:textColor="@color/colorPrimaryTextColor"
+        android:textSize="@dimen/text_heading"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/rating_tv"
+        android:layout_margin="@dimen/margin_10dp"
+        android:textSize="@dimen/text_subheading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/country_tv"
+        style="@style/SecondaryTextAppearance"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/director_tv"
+        style="@style/SecondaryTextAppearance"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/actors_tv"
+        style="@style/SecondaryTextAppearance"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/film_description_tv"
+        style="@style/SecondaryTextAppearance"
+        android:layout_margin="@dimen/margin_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+</RelativeLayout>

@@ -8,30 +8,41 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:subtitleTextColor="@color/colorWhite"
-        app:titleTextColor="@color/colorWhite">
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/colorPrimaryTextColor">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
-
-            <EditText
-                android:id="@+id/search_et"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:drawableEnd="@drawable/ic_action_search"
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical|start"
-                android:hint="@string/app_name"
-                android:textColor="@color/colorGray"
-                android:textCursorDrawable="@drawable/cursor"
-                android:textSize="@dimen/text_heading"
-                android:theme="@style/EditStyleForSearch"
-                android:tint="@color/colorWhite" />
-        </RelativeLayout>
+                android:layout_height="match_parent"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:id="@+id/clear_btn"
+                    android:layout_width="@dimen/margin_20dp"
+                    android:layout_height="@dimen/margin_20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/ic_clear"/>
+
+                <EditText
+                    android:id="@+id/search_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/clear_btn"
+                    android:singleLine="true"
+                    android:drawableStart="@drawable/ic_action_search"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical|start"
+                    android:hint="@string/app_name"
+                    android:textColor="@color/colorPrimaryTextColor"
+                    android:textCursorDrawable="@drawable/cursor"
+                    android:textSize="@dimen/text_heading"
+                    android:theme="@style/EditStyleForSearch"/>
+
+
+            </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
