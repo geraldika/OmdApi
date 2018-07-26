@@ -8,6 +8,10 @@ import java.util.Objects;
 
 public class Film {
 
+    @SerializedName("imdbID")
+    @Expose
+    private String imdbID;
+
     @SerializedName("Title") /*title of the film*/
     @Expose
     private String title;
@@ -35,6 +39,14 @@ public class Film {
     @SerializedName("Poster")
     @Expose
     private String poster;
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
 
     public String getTitle() {
         return title;

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OmdApi</string>
+    <string name="title_not_found">film\' s title isn\'t found</string>
 </resources>

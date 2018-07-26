@@ -5,6 +5,6 @@ import com.example.omdapi.main.model.Film;
 
 import java.util.List;
 
-public interface OmdbSearchView extends BaseView {
+public interface SearchView extends BaseView {
     void showFilms(List<Film> films);
 }
