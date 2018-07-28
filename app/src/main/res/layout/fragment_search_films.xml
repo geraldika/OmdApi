@@ -41,27 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/clear_btn"
                 android:drawablePadding="5dp"
                 android:searchIcon="@drawable/ic_action_search" />
-
-
-            <!--  <SearchView
-                  android:id="@+id/search_et"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:layout_toStartOf="@+id/clear_btn"
-                  android:singleLine="true"
-                  android:drawableStart="@drawable/ic_action_search"
-                  android:drawablePadding="5dp"
-                  android:gravity="center_vertical|start"
-                  android:hint="@string/app_name"
-                  android:textColor="@color/colorPrimaryTextColor"
-                  android:textCursorDrawable="@drawable/cursor"
-                  android:textSize="@dimen/text_subheading"
-                  android:theme="@style/EditStyleForSearch"/>-->
-
-
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 

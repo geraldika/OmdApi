@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.omdbapi.R;
+import com.example.omdbapi.app.App;
 import com.example.omdbapi.main.OmdbActivity;
 import com.example.omdbapi.main.adapter.FilmsAdapter;
 import com.example.omdbapi.main.model.Film;
@@ -70,17 +71,12 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         View view = inflater.inflate(R.layout.fragment_search_films, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        setSearchEditTextListener();
+        initSearchView();
+        initFilmsAdapter();
 
         if (getActivity() != null)
             setOnShowFilmInfoListener((OmdbActivity) getActivity());
 
-
-        if (getArguments() != null) {
-            searchView.setQuery(getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY), false);
-        }
-
-        initFilmsAdapter();
         searchFilmsPresenter.init(searchView);
 
         return view;
@@ -125,14 +121,6 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         progressBar.setVisibility(View.INVISIBLE);
     }
 
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
-        searchFilmsPresenter.disposeObservable();
-    }
-
     private void initFilmsAdapter() {
         if (adapter == null) {
             adapter = new FilmsAdapter();
@@ -143,21 +131,27 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         adapter.setOnClickItemListener(this);
     }
 
-    //todo
-    private void setSearchEditTextListener() {
+    private void initSearchView() {
+        if (getArguments() != null) {
+            searchView.setQuery(getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY), false);
+        }
 
-        searchView.setOnQueryTextFocusChangeListener((View view, boolean hasFocus)-> {
-                if (hasFocus) {
-                    //Log.d(TAG, " focus:1 " + hasFocus);
-                    clearBtn.setVisibility(View.VISIBLE);
-                } else {
-                   // Log.d(TAG, " focus:2 " + hasFocus);
-                    // String title = hasFocus ? EMPTY : App.getAppComponent().getContext().getResources().getString(R.string.app_name);
-                    // searchView.setQueryHint(title);
-                    searchView.setIconified(true);
-                    clearBtn.setVisibility(View.INVISIBLE);
-                }
+        setSearchViewByFocus(false);
+        searchView.setOnQueryTextFocusChangeListener((View view, boolean hasFocus) -> {
+            setSearchViewByFocus(hasFocus);
         });
+    }
+
+    public void setSearchViewByFocus(boolean hasFocus) {
+        String title = hasFocus ? EMPTY : App.getAppComponent().getContext().getResources().getString(R.string.app_name);
+        searchView.setQueryHint(title);
+
+        if (hasFocus) {
+            clearBtn.setVisibility(View.VISIBLE);
+        } else {
+            clearBtn.setVisibility(View.INVISIBLE);
+            searchView.setIconified(true);
+        }
     }
 
     @Override
@@ -167,6 +161,14 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
             getArguments().putString(SEARCH_STRING_BUNDLE, searchView.getQuery().toString());
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+        searchFilmsPresenter.disposeObservable();
+    }
+
 
     public interface OnShowFilmInfoListener {
         void onShowFilmInfo(@NonNull String idFilm);

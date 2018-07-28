@@ -4,4 +4,9 @@
     <string name="not_found">Not found</string>
     <string name="loading">Loading…</string>
     <string name="smth_went_wrong">Something went wrong!</string>
+    <string name="country">Country:</string>
+    <string name="director">Director:</string>
+    <string name="actors">Actors:</string>
+    <string name="rating">Rating</string>
+    <string name="poster">poster</string>
 </resources>

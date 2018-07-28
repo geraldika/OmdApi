@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +20,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.omdbapi.R;
 import com.example.omdbapi.main.OmdbActivity;
+import com.example.omdbapi.main.adapter.RatingsAdapter;
+import com.example.omdbapi.main.model.Rating;
 import com.example.omdbapi.main.presenter.FilmInfoPresenter;
 import com.example.omdbapi.main.view.FilmInfoView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 import static com.example.omdbapi.utils.Constants.EMPTY;
+import static com.example.omdbapi.utils.Constants.SPACE_STR;
 
 public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoView {
 
@@ -36,8 +43,8 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
     ImageView posterIv;
     @BindView(R.id.title_tv)
     TextView titleTv;
-    @BindView(R.id.rating_tv)
-    TextView ratingTv;
+    @BindView(R.id.list_view)
+    ListView ratingLv;
     @BindView(R.id.country_tv)
     TextView countryTv;
     @BindView(R.id.director_tv)
@@ -46,6 +53,10 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
     TextView actorsTv;
     @BindView(R.id.film_description_tv)
     TextView filmDescriptionTv;
+    @BindView(R.id.rating_tv)
+    TextView ratingTv;
+    @BindView(R.id.content_linear)
+    LinearLayout contentLl;
     ProgressDialog progressDialog;
     @InjectPresenter
     FilmInfoPresenter filmInfoPresenter;
@@ -70,6 +81,7 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
 
         setCancelableProgressDialog();
         initNavigationBtn();
+
         return view;
     }
 
@@ -81,23 +93,30 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
-    }
-
-    @Override
-    public void showFilmInfo(String posterUrl, String title, String rating, String country,
+    public void showFilmInfo(String posterUrl, String title, @NonNull List<Rating> rating, String country,
                              String director, String actors, String plot) {
         loadPoster(posterUrl);
 
         toolbar.setTitle(title);
         titleTv.setText(title);
-        ratingTv.setText(rating);
-        countryTv.setText(country);
-        directorTv.setText(director);
-        actorsTv.setText(actors);
+
+        initRatingAdapter(rating);
+
+        countryTv.setText(getString(R.string.country).concat(SPACE_STR).concat(country));
+        directorTv.setText(getString(R.string.director).concat(SPACE_STR).concat(director));
+        actorsTv.setText(getString(R.string.actors).concat(SPACE_STR).concat(actors));
         filmDescriptionTv.setText(plot);
+
+        contentLl.setVisibility(View.VISIBLE);
+    }
+
+    private void initRatingAdapter(@NonNull List<Rating> ratings) {
+        if (ratings.size() > 0) {
+            ratingTv.setVisibility(View.VISIBLE);
+            RatingsAdapter adapter = new RatingsAdapter(activity, R.layout.item_rating_list_view);
+            ratingLv.setAdapter(adapter);
+            adapter.addAll(ratings);
+        }
     }
 
     @Override
@@ -125,8 +144,8 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
                 .with(this)
                 .load(url)
                 .apply(new RequestOptions()
-                        .override(300, 300)
-                        .placeholder(R.drawable.no_image)
+                        .override(0, 0)
+                       // .placeholder(R.drawable.no_image)
                         .error(R.drawable.no_image))
                 .into(posterIv);
     }
@@ -148,5 +167,11 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
         progressDialog = new ProgressDialog(activity);
         progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }
