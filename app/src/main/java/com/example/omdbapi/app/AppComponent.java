@@ -5,7 +5,6 @@ import android.content.Context;
 import com.example.omdbapi.api.module.ApiModule;
 import com.example.omdbapi.api.module.ServiceModule;
 import com.example.omdbapi.main.model.FilmInfoInteractor;
-import com.example.omdbapi.main.presenter.FilmInfoPresenter;
 import com.example.omdbapi.main.presenter.SearchFilmsPresenter;
 
 import javax.inject.Singleton;

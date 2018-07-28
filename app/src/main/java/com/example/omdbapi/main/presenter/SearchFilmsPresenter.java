@@ -57,22 +57,24 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
         if (TextUtils.isEmpty(charSequence) && charSequence.length() <= 1) {
             getViewState().clearData();
             return true;
+        } else {
+            getViewState().showLoading();
+            return false;
         }
-        return false;
     }
 
     private void showFilms(SearchWrapper searchWrapper) {
         if (searchWrapper != null && searchWrapper.getFilmList() != null)
             getViewState().showFilms(searchWrapper.getFilmList());
+
+        getViewState().hideLoading();
     }
 
     private Observable<SearchWrapper> getSearchedTask(CharSequence s) {
-
         return webService.getFilms(s.toString())
-                // .doOnSubscribe(getViewState()::showLoading)
-                // .doOnTerminate(getViewState()::hideLoading)
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io()) // network
                 .observeOn(AndroidSchedulers.mainThread());
+
     }
 
     public void disposeObservable() {

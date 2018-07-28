@@ -8,6 +8,8 @@ import com.example.omdbapi.R;
 import com.example.omdbapi.api.WebService;
 import com.example.omdbapi.app.App;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -45,7 +47,7 @@ public class FilmInfoInteractor implements FilmInfoInteractorImpl {
                                 film.getTitle() : context.getString(R.string.not_found);
                         //todo
                         String rating = film.getRatings() != null && !EMPTY.equals(film.getTitle()) ?
-                                film.getTitle() : context.getString(R.string.not_found);
+                                film.getRatings().toString() : context.getString(R.string.not_found);
 
                         String country = film.getTitle() != null && !EMPTY.equals(film.getCountry()) ?
                                 film.getCountry() : context.getString(R.string.not_found);

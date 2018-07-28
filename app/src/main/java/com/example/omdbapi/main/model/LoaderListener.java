@@ -1,14 +1,14 @@
 package com.example.omdbapi.main.model;
 
- public interface LoaderListener {
+public interface LoaderListener {
 
-     void onError();
+    void onError();
 
-     void onLoading();
+    void onLoading();
 
-     void onFinished();
+    void onFinished();
 
-     void onDataLoaded(String posterUrl, String title, String rating, String country,
-                       String director, String actors, String plot);
+    void onDataLoaded(String posterUrl, String title, String rating, String country,
+                      String director, String actors, String plot);
 
 }

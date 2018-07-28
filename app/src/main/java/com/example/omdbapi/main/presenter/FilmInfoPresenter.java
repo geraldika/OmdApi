@@ -15,7 +15,6 @@ public class FilmInfoPresenter extends MvpPresenter<FilmInfoView> implements Loa
 
     private FilmInfoInteractor filmInfoInteractor;
 
-
     public FilmInfoPresenter() {
         filmInfoInteractor = new FilmInfoInteractor();
     }

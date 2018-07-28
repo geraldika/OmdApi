@@ -2,7 +2,6 @@
     <string name="app_name">OmdbApi</string>
     <string name="title_not_found">film\' s title isn\'t found</string>
     <string name="not_found">Not found</string>
-    <string name="loading">Идет загрузка...</string>
-    <string name="smth_went_wrong">При загрузке что-то пошло не так!</string>
-    <string name="no_films_with_this_title">Фильмы с таким названием не найдены</string>
+    <string name="loading">Loading…</string>
+    <string name="smth_went_wrong">Something went wrong!</string>
 </resources>

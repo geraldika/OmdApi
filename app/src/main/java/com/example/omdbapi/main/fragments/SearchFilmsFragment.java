@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.omdbapi.R;
-import com.example.omdbapi.app.App;
 import com.example.omdbapi.main.OmdbActivity;
 import com.example.omdbapi.main.adapter.FilmsAdapter;
 import com.example.omdbapi.main.model.Film;
@@ -79,20 +78,13 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
 
         if (getArguments() != null) {
             searchView.setQuery(getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY), false);
-            Log.d(TAG, "search tv " + getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY));
         }
+
         initFilmsAdapter();
         searchFilmsPresenter.init(searchView);
 
         return view;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "oncreated");
-    }
-
 
     public void setOnShowFilmInfoListener(OnShowFilmInfoListener onShowFilmInfoListener) {
         this.onShowFilmInfoListener = onShowFilmInfoListener;
@@ -121,19 +113,16 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         adapter.clearData();
         if (getActivity() != null)
             Toast.makeText(getActivity(), getActivity().getString(R.string.smth_went_wrong), Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "showError");
     }
 
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
-        Log.d(TAG, "showLoading");
     }
 
     @Override
     public void hideLoading() {
-        progressBar.setVisibility(View.GONE);
-        Log.d(TAG, "hideLoading");
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
 
@@ -154,18 +143,20 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         adapter.setOnClickItemListener(this);
     }
 
+    //todo
     private void setSearchEditTextListener() {
-        searchView.setOnFocusChangeListener((View v, boolean hasFocus) -> {
 
-            String title = hasFocus ? EMPTY : App.getAppComponent().getContext().getResources().getString(R.string.app_name);
-            searchView.setQueryHint(title);
-
-            if (hasFocus) {
-                clearBtn.setVisibility(View.VISIBLE);
-            } else {
-                clearBtn.setVisibility(View.INVISIBLE);
-            }
-
+        searchView.setOnQueryTextFocusChangeListener((View view, boolean hasFocus)-> {
+                if (hasFocus) {
+                    //Log.d(TAG, " focus:1 " + hasFocus);
+                    clearBtn.setVisibility(View.VISIBLE);
+                } else {
+                   // Log.d(TAG, " focus:2 " + hasFocus);
+                    // String title = hasFocus ? EMPTY : App.getAppComponent().getContext().getResources().getString(R.string.app_name);
+                    // searchView.setQueryHint(title);
+                    searchView.setIconified(true);
+                    clearBtn.setVisibility(View.INVISIBLE);
+                }
         });
     }
 
@@ -174,7 +165,6 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         super.onPause();
         if (getArguments() != null) {
             getArguments().putString(SEARCH_STRING_BUNDLE, searchView.getQuery().toString());
-            Log.d(TAG, "onStop " + getArguments().getString(SEARCH_STRING_BUNDLE));
         }
     }
 
