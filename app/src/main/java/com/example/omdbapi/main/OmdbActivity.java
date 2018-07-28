@@ -1,6 +1,5 @@
 package com.example.omdbapi.main;
 
-
 import android.app.Activity;
 import android.graphics.Rect;
 import android.os.Bundle;
