@@ -8,13 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+    <item name="android:textAppearance">@style/SecondaryTextAppearance</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="colorControlNormal">@color/colorPrimary</item>
+    <item name="colorControlActivated">@color/colorAccent</item>
+    <item name="colorControlHighlight">@color/colorAccent</item>
+    </style>
+
     <!-- theme of Seaching Widget -->
-    <style name="EditStyleForSearch" parent="android:style/Widget.EditText">
-        <item name="colorControlNormal">@color/colorPrimaryDark</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/colorWhite</item>
-        <item name="android:textColor">@color/colorWhite</item>
+  <!--  <style name="EditStyleForSearch" parent="android:style/Widget.EditText">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryTextColor</item>
+    </style>-->
+
+    <!-- theme of Secondaty Style TextView -->
+    <style name="PrimaryTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimaryTextColor</item>
+        <item name="android:textSize">@dimen/text_subheading</item>
+    </style>
+
+    <!-- theme of Secondaty Style TextView -->
+    <style name="SecondaryTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorSecondaryTextColor</item>
+        <item name="android:textSize">@dimen/text_body</item>
     </style>
 
 </resources>

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">OmdApi</string>
+    <string name="app_name">OmdbApi</string>
+    <string name="title_not_found">film\' s title isn\'t found</string>
+    <string name="not_found">Not found</string>
+    <string name="loading">Loading…</string>
+    <string name="smth_went_wrong">Something went wrong!</string>
 </resources>
