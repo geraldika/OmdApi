@@ -60,6 +60,7 @@ dependencies {
 
     /*rx edittext*/
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.1.1'
 
     /*moxy*/
     implementation 'com.arello-mobile:moxy:1.5.3'

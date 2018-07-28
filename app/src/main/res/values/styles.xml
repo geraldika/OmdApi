@@ -13,18 +13,18 @@
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
     <item name="colorControlNormal">@color/colorPrimary</item>
-    <item name="colorControlActivated">@color/colorPrimary</item>
-    <item name="colorControlHighlight">@color/colorPrimary</item>
+    <item name="colorControlActivated">@color/colorAccent</item>
+    <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
     <!-- theme of Seaching Widget -->
-    <style name="EditStyleForSearch" parent="android:style/Widget.EditText">
+  <!--  <style name="EditStyleForSearch" parent="android:style/Widget.EditText">
         <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
         <item name="android:textColorHint">@color/colorAccent</item>
         <item name="android:textColor">@color/colorPrimaryTextColor</item>
-    </style>
+    </style>-->
 
     <!-- theme of Secondaty Style TextView -->
     <style name="PrimaryTextAppearance" parent="@android:style/TextAppearance">
