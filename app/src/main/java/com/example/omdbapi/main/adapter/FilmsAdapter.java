@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +20,11 @@ import static com.example.omdbapi.utils.Constants.EMPTY;
 public class FilmsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int EMPTY_VIEW = 1;
-    private static final String TAG = FilmsAdapter.class.getSimpleName();
+    //private static final String TAG = FilmsAdapter.class.getSimpleName();
 
     private Context context;
     private List<Film> films;
     private OnClickItemListener onClickItemListener;
-
-    public FilmsAdapter() {
-        this.films = Collections.emptyList();
-    }
 
     public void setData(@NonNull List<Film> films) {
         this.films = films;
@@ -64,9 +59,9 @@ public class FilmsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof FilmHolder) {
-            Log.d(TAG, "onBindViewHolder");
             FilmHolder taskHolder = (FilmHolder) holder;
             Film film = films.get(position);
+
             String title = film.getTitle() != null && !EMPTY.equals(film.getTitle()) ? film.getTitle() : context.getString(R.string.title_not_found);
             taskHolder.titleTv.setText(title);
 
@@ -80,7 +75,7 @@ public class FilmsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public interface OnClickItemListener {
-        void onItemClicked(@NonNull String imdbID); //tt0096895
+        void onItemClicked(@NonNull String imdbID);
     }
 
     private class EmptyViewHolder extends RecyclerView.ViewHolder {

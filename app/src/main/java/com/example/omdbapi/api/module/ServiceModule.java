@@ -16,4 +16,5 @@ public class ServiceModule {
     public WebService provideService(OmdbApi omdbApi) {
         return new WebService(omdbApi);
     }
+
 }

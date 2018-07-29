@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +44,6 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
     RecyclerView recyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     @InjectPresenter
     SearchFilmsPresenter searchFilmsPresenter;
@@ -74,8 +71,6 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
 
         initSearchView();
         initFilmsAdapter();
-
-        toolbar.setTitle(App.getAppComponent().getContext().getResources().getString(R.string.app_name));
 
         if (getActivity() != null)
             setOnShowFilmInfoListener((OmdbActivity) getActivity());

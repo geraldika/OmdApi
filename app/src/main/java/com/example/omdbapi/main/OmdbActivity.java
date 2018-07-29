@@ -35,7 +35,6 @@ public class OmdbActivity extends MvpAppCompatActivity implements SearchFilmsFra
     }
 
     public void initSearchFragment() {
-
         fragment = getSupportFragmentManager().findFragmentByTag(SEARCH_FRAGMENT);
         if (fragment == null) {
             getSupportFragmentManager()
@@ -72,7 +71,8 @@ public class OmdbActivity extends MvpAppCompatActivity implements SearchFilmsFra
         initInfoFragment(idFilm);
     }
 
-    public Fragment getCurrentFragment() { // current fragment
+    /* current fragment */
+    public Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.container_layout);
     }
 
@@ -88,7 +88,7 @@ public class OmdbActivity extends MvpAppCompatActivity implements SearchFilmsFra
         } else initSearchFragment();
     }
 
-    /* hide keyboard by touch */
+    /* hide keyboard by touch the screen */
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

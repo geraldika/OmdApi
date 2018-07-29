@@ -47,7 +47,6 @@ public class RatingsAdapter extends ArrayAdapter<Rating> {
 
             sourceTv.setText(source);
             valueTv.setText(value);
-
         }
         return v;
     }
