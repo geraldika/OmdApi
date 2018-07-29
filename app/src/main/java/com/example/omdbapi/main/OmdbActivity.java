@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -92,11 +93,20 @@ public class OmdbActivity extends MvpAppCompatActivity implements SearchFilmsFra
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if (v instanceof TextView || v instanceof RecyclerView) {
+            //todo
+            if (v instanceof RelativeLayout || v instanceof TextView || v instanceof RecyclerView) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
                 if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     hideKeyboard(v);
+                    if (getCurrentFragment() instanceof SearchFilmsFragment && fragment != null) {
+                        try {
+                            ((SearchFilmsFragment) fragment).setSearchViewTitle();
+                        } catch (Exception e) {
+                            //todo
+                            Log.d(TAG, " null fr: " + e.toString());
+                        }
+                    }
                 }
             }
         }

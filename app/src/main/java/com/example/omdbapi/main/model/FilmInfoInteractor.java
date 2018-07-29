@@ -48,7 +48,7 @@ public class FilmInfoInteractor implements FilmInfoInteractorImpl {
                                 film.getTitle() : context.getString(R.string.not_found);
 
                         List<Rating> rating = film.getRatings() != null && !EMPTY.equals(film.getTitle()) ?
-                                film.getRatings(): Collections.emptyList();
+                                film.getRatings() : Collections.emptyList();
 
                         String country = film.getTitle() != null && !EMPTY.equals(film.getCountry()) ?
                                 film.getCountry() : context.getString(R.string.not_found);

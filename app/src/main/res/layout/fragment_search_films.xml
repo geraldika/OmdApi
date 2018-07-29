@@ -14,9 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
+            android:layout_height="match_parent">
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -27,31 +25,30 @@
                 android:layout_marginEnd="10dp"
                 android:visibility="invisible" />
 
-            <ImageView
-                android:id="@+id/clear_btn"
-                android:layout_width="@dimen/margin_20dp"
-                android:layout_height="@dimen/margin_20dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@+id/progress_bar"
-                android:background="@drawable/ic_clear" />
-
             <SearchView
                 android:id="@+id/search_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_centerVertical="true"
                 android:drawablePadding="5dp"
-                android:searchIcon="@drawable/ic_action_search" />
+                android:searchIcon="@drawable/ic_action_search"/>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_margin="4dp"
-        android:scrollbars="vertical" />
+        android:layout_margin="@dimen/margin_4dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -140,23 +140,23 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
     }
 
     private void loadPoster(String url) {
-        Glide
-                .with(this)
-                .load(url)
-                .apply(new RequestOptions()
-                        .override(0, 0)
-                       // .placeholder(R.drawable.no_image)
-                        .error(R.drawable.no_image))
-                .into(posterIv);
+        if (url != null && !EMPTY.equals(url))
+            Glide
+                    .with(this)
+                    .load(url)
+                    .apply(new RequestOptions()
+                            .override(0, 0)
+                            // .placeholder(R.drawable.no_image)
+                            .error(R.drawable.no_image))
+                    .into(posterIv);
     }
 
     private void initNavigationBtn() {
         if (activity != null)
             activity.setSupportActionBar(toolbar);
         toolbar.setTitle(EMPTY);
-        toolbar.setNavigationOnClickListener((View v) -> {
-            activity.initSearchFragment();
-        });
+        toolbar.setNavigationOnClickListener((View v) ->
+                activity.initSearchFragment());
     }
 
     private boolean isProgressDialogShowing() {

@@ -6,11 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -45,8 +45,8 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
     RecyclerView recyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.clear_btn)
-    ImageView clearBtn;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @InjectPresenter
     SearchFilmsPresenter searchFilmsPresenter;
@@ -60,10 +60,11 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         return fragment;
     }
 
-    @OnClick(R.id.clear_btn)
-    void clear() {
-        searchView.setQuery(EMPTY, false);
+    @OnClick(R.id.search_et)
+    void startSearch() {
+        searchView.setIconified(false);
     }
+
 
     @Nullable
     @Override
@@ -73,6 +74,8 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
 
         initSearchView();
         initFilmsAdapter();
+
+        toolbar.setTitle(App.getAppComponent().getContext().getResources().getString(R.string.app_name));
 
         if (getActivity() != null)
             setOnShowFilmInfoListener((OmdbActivity) getActivity());
@@ -131,27 +134,18 @@ public class SearchFilmsFragment extends MvpAppCompatFragment implements SearchF
         adapter.setOnClickItemListener(this);
     }
 
-    private void initSearchView() {
-        if (getArguments() != null) {
-            searchView.setQuery(getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY), false);
-        }
-
-        setSearchViewByFocus(false);
-        searchView.setOnQueryTextFocusChangeListener((View view, boolean hasFocus) -> {
-            setSearchViewByFocus(hasFocus);
-        });
+    public void setSearchViewTitle() {
+        searchView.setQueryHint(App.getAppComponent().getContext().getResources().getString(R.string.app_name));
+        searchView.setFocusable(true);
     }
 
-    public void setSearchViewByFocus(boolean hasFocus) {
-        String title = hasFocus ? EMPTY : App.getAppComponent().getContext().getResources().getString(R.string.app_name);
-        searchView.setQueryHint(title);
+    private void initSearchView() {
+        if (getArguments() != null)
+            if (!EMPTY.equals(getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY)))
+                searchView.setQuery(getArguments().getString(SEARCH_STRING_BUNDLE, EMPTY), false);
 
-        if (hasFocus) {
-            clearBtn.setVisibility(View.VISIBLE);
-        } else {
-            clearBtn.setVisibility(View.INVISIBLE);
-            searchView.setIconified(true);
-        }
+        setSearchViewTitle();
+        searchView.setIconified(true);
     }
 
     @Override

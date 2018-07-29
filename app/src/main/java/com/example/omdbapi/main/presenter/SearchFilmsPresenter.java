@@ -12,6 +12,7 @@ import com.example.omdbapi.app.App;
 import com.example.omdbapi.main.view.SearchFilmsView;
 import com.jakewharton.rxbinding2.widget.RxSearchView;
 
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -49,6 +50,7 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
                 .subscribe(this::showFilms,
                         throwable -> {
                             getViewState().showError();
+                            getViewState().hideLoading();
                             Log.d(TAG, " err: " + throwable.toString());
                         });
     }
@@ -66,6 +68,7 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
     private void showFilms(SearchWrapper searchWrapper) {
         if (searchWrapper != null && searchWrapper.getFilmList() != null)
             getViewState().showFilms(searchWrapper.getFilmList());
+        else getViewState().showFilms(Collections.emptyList());
 
         getViewState().hideLoading();
     }
