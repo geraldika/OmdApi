@@ -29,11 +29,11 @@
                 android:id="@+id/search_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
                 android:layout_centerVertical="true"
+                android:clickable="true"
                 android:drawablePadding="5dp"
-                android:searchIcon="@drawable/ic_action_search"/>
+                android:focusable="true"
+                android:searchIcon="@drawable/ic_action_search" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 

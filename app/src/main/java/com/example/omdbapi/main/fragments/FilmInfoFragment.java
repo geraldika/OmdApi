@@ -64,7 +64,6 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
     private OmdbActivity activity;
 
     public static FilmInfoFragment newInstance(@NonNull String idFilm) {
-
         FilmInfoFragment fragment = new FilmInfoFragment();
         Bundle args = new Bundle();
         args.putString(ID_FILM, idFilm);
@@ -72,7 +71,6 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
         return fragment;
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_film_info, container, false);
@@ -146,7 +144,7 @@ public class FilmInfoFragment extends MvpAppCompatFragment implements FilmInfoVi
                     .load(url)
                     .apply(new RequestOptions()
                             .override(0, 0)
-                            // .placeholder(R.drawable.no_image)
+                            //.placeholder(R.drawable.no_image)
                             .error(R.drawable.no_image))
                     .into(posterIv);
     }

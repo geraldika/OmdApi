@@ -12,7 +12,7 @@ public class Film {
     @Expose
     private String imdbID;
 
-    @SerializedName("Title") /*title of the film*/
+    @SerializedName("Title")
     @Expose
     private String title;
 
@@ -122,15 +122,4 @@ public class Film {
     public int hashCode() {
         return Objects.hash(title, ratings, country, director, actors, plot, poster);
     }
-
-
-    /* Постер фильма
- Название!
- Рейтинг!
- Страна!
- Режиссер!
- Список актеров!
- Описание фильма*/
-
-
 }

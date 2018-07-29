@@ -28,14 +28,13 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
     private static final String TAG = SearchFilmsPresenter.class.getSimpleName();
     @Inject
     WebService webService;
-    private Disposable disposable; //unsubscribe
+    private Disposable disposable; //to unsubscribe
 
     public SearchFilmsPresenter() {
         App.getAppComponent().inject(this);
     }
 
     public void init(SearchView searchView) {
-
         int timeInterval = 100;
 
         disposable = RxSearchView.queryTextChanges(searchView)
@@ -66,8 +65,8 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
     }
 
     private void showFilms(SearchWrapper searchWrapper) {
-        if (searchWrapper != null && searchWrapper.getFilmList() != null)
-            getViewState().showFilms(searchWrapper.getFilmList());
+        if (searchWrapper != null && searchWrapper.getFilms() != null)
+            getViewState().showFilms(searchWrapper.getFilms());
         else getViewState().showFilms(Collections.emptyList());
 
         getViewState().hideLoading();
@@ -76,8 +75,9 @@ public class SearchFilmsPresenter extends MvpPresenter<SearchFilmsView> {
     private Observable<SearchWrapper> getSearchedTask(CharSequence s) {
         return webService.getFilms(s.toString())
                 .subscribeOn(Schedulers.io()) // network
-                .observeOn(AndroidSchedulers.mainThread());
-
+                .observeOn(AndroidSchedulers.mainThread())
+                //for test " AND 1=1 -> 403 Forbidden
+                .onErrorReturnItem(new SearchWrapper(Collections.emptyList()));
     }
 
     public void disposeObservable() {

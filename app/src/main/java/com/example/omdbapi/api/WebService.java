@@ -10,7 +10,7 @@ import retrofit2.Call;
 
 public class WebService {
 
-    public static final String OMD_API_KEY = "484cf683";
+    private static final String OMD_API_KEY = "484cf683";
     private OmdbApi omdbApi;
 
     public WebService(OmdbApi omdApi) {
